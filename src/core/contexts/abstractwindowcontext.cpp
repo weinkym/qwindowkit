@@ -122,11 +122,18 @@ namespace QWK {
     bool AbstractWindowContext::isInTitleBarDraggableArea(const QPoint &pos) const {
         if (!m_titleBar) {
             // There's no title bar at all, the mouse will always be in the client area.
+            qDebug()<<Q_FUNC_INFO<<__LINE__;
+            return false;
+        }
+        if (m_delegate->hasChild(m_titleBar,pos) ) {
+            // There's no title bar at all, the mouse will always be in the client area.
+//            qDebug()<<Q_FUNC_INFO<<__LINE__;
             return false;
         }
         if (!m_delegate->isVisible(m_titleBar) || !m_delegate->isEnabled(m_titleBar)) {
             // The title bar is hidden or disabled for some reason, treat it as there's
             // no title bar.
+//            qDebug()<<Q_FUNC_INFO<<__LINE__;
             return false;
         }
         QRect windowRect = {QPoint(0, 0), m_windowHandle->size()};
@@ -134,10 +141,12 @@ namespace QWK {
         if (!titleBarRect.intersects(windowRect)) {
             // The title bar is totally outside the window for some reason,
             // also treat it as there's no title bar.
+//            qDebug()<<Q_FUNC_INFO<<__LINE__;
             return false;
         }
 
         if (!titleBarRect.contains(pos)) {
+            qDebug()<<Q_FUNC_INFO<<__LINE__;
             return false;
         }
 
@@ -146,6 +155,7 @@ namespace QWK {
             if (currentButton && m_delegate->isVisible(currentButton) &&
                 m_delegate->isEnabled(currentButton) &&
                 m_delegate->mapGeometryToScene(currentButton).contains(pos)) {
+                qDebug()<<Q_FUNC_INFO<<__LINE__;
                 return false;
             }
         }
@@ -153,9 +163,12 @@ namespace QWK {
         for (auto widget : m_hitTestVisibleItems) {
             if (widget && m_delegate->isVisible(widget) && m_delegate->isEnabled(widget) &&
                 m_delegate->mapGeometryToScene(widget).contains(pos)) {
+                qDebug()<<Q_FUNC_INFO<<__LINE__;
                 return false;
             }
         }
+
+//        qDebug()<<Q_FUNC_INFO<<__LINE__;
 
         return true;
     }

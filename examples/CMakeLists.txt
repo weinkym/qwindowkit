@@ -16,6 +16,7 @@ add_subdirectory(shared)
 
 if(QWINDOWKIT_BUILD_WIDGETS)
     add_subdirectory(mainwindow)
+    add_subdirectory(zdialog)
 endif()
 
 if(QWINDOWKIT_BUILD_QUICK)

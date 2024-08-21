@@ -32,6 +32,7 @@ namespace QWK {
         bool isEnabled(const QObject *obj) const override;
         bool isVisible(const QObject *obj) const override;
         QRect mapGeometryToScene(const QObject *obj) const override;
+        virtual bool hasChild(const QObject *obj,const QPoint &pos) const override;
 
         QWindow *hostWindow(const QObject *host) const override;
         bool isWindowActive(const QObject *host) const override;

@@ -8,13 +8,17 @@ project(QWindowKit VERSION 1.1.1.0 LANGUAGES CXX)
 option(QWINDOWKIT_BUILD_STATIC "Build static libraries" OFF)
 option(QWINDOWKIT_BUILD_WIDGETS "Build widgets module" ON)
 option(QWINDOWKIT_BUILD_QUICK "Build quick module" OFF)
-option(QWINDOWKIT_BUILD_EXAMPLES "Build examples" OFF)
+option(QWINDOWKIT_BUILD_EXAMPLES "Build examples" ON)
 option(QWINDOWKIT_BUILD_DOCUMENTATIONS "Build documentations" OFF)
 option(QWINDOWKIT_INSTALL "Install library" ON)
 
 option(QWINDOWKIT_ENABLE_QT_WINDOW_CONTEXT "Enable Qt Window Context anyway" OFF)
-option(QWINDOWKIT_ENABLE_WINDOWS_SYSTEM_BORDERS "Enable system borders on Windows" ON)
+option(QWINDOWKIT_ENABLE_WINDOWS_SYSTEM_BORDERS "Enable system borders on Windows" OFF)
 option(QWINDOWKIT_ENABLE_STYLE_AGENT "Enable building style agent" ON)
+
+if(APPLE)
+set(CMAKE_OSX_ARCHITECTURES x86_64)
+endif()
 
 #[[
 

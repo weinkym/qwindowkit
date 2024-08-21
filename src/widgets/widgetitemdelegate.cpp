@@ -9,6 +9,7 @@
 #include <QtWidgets/QWidget>
 
 #include <QWKCore/private/abstractwindowcontext_p.h>
+#include <QDebug>
 
 extern Q_DECL_IMPORT QWidget *qt_button_down;
 
@@ -58,6 +59,13 @@ namespace QWK {
         const QPoint originPoint = widget->mapTo(widget->window(), QPoint(0, 0));
         const QSize size = widget->size();
         return {originPoint, size};
+    }
+
+    bool WidgetItemDelegate::hasChild(const QObject *obj, const QPoint &pos) const
+    {
+        qDebug()<<static_cast<const QWidget *>(obj)->childAt(pos);
+
+        return static_cast<const QWidget *>(obj)->childAt(pos) != nullptr;
     }
 
     QWindow *WidgetItemDelegate::hostWindow(const QObject *host) const {
