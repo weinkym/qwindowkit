@@ -125,11 +125,11 @@ namespace QWK {
             qDebug()<<Q_FUNC_INFO<<__LINE__;
             return false;
         }
-        if (m_delegate->hasChild(m_titleBar,pos) ) {
-            // There's no title bar at all, the mouse will always be in the client area.
-//            qDebug()<<Q_FUNC_INFO<<__LINE__;
-            return false;
-        }
+//        if (m_delegate->hasChild(m_titleBar,pos) ) {
+//            // There's no title bar at all, the mouse will always be in the client area.
+////            qDebug()<<Q_FUNC_INFO<<__LINE__;
+//            return false;
+//        }
         if (!m_delegate->isVisible(m_titleBar) || !m_delegate->isEnabled(m_titleBar)) {
             // The title bar is hidden or disabled for some reason, treat it as there's
             // no title bar.
