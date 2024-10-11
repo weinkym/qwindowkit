@@ -36,11 +36,16 @@ int main(int argc, char *argv[]) {
     MainWindow w;
     w.show();
 #endif
-#if 0
+
+#if 1
     ZDialog zdlg;
     zdlg.show();
+
+//    ZDialog zdlg2;
+//    zdlg2.show();
 #endif
-#if 1
+
+#if 0
     ZWidget zw;
     zw.show();
 #endif

@@ -26,6 +26,7 @@ namespace QWK {
 
         QWidget *titleBar() const;
         void setTitleBar(QWidget *w);
+        void setHasChildCb(std::function<bool(const QObject *obj,const QPoint &pos)> cb);
 
         QWidget *systemButton(SystemButton button) const;
         void setSystemButton(SystemButton button, QWidget *w);
@@ -41,6 +42,7 @@ namespace QWK {
 
         bool isHitTestVisible(const QWidget *w) const;
         void setHitTestVisible(QWidget *w, bool visible = true);
+
 
     Q_SIGNALS:
         void titleBarChanged(QWidget *w);

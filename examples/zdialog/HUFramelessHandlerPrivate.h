@@ -14,9 +14,11 @@ public:
     HUFramelessHandlerPrivate(QWidget *widget,HUFramelessHandler *ptr);
     ~HUFramelessHandlerPrivate();
     QWK::WidgetWindowAgent *windowAgent();
+    void initFramelesss();
 
 private:
     HUFramelessHandler* m_pptr = nullptr;
+    bool m_inited = false;
     QPointer<QWidget> m_widget;
     QWK::WidgetWindowAgent *m_windowAgent;
 };

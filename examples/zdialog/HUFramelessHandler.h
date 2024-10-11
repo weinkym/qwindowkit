@@ -17,8 +17,11 @@ public:
 
 protected:
     QWK::WidgetWindowAgent *windowAgent();
+    virtual bool hasChild(const QPoint &pos) const;
+    void initFramelesss();
 
 private:
+    friend class HUFramelessHandlerPrivate;
     HUFramelessHandlerPrivate *m_dptr;
 };
 

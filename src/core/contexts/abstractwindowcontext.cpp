@@ -95,6 +95,11 @@ namespace QWK {
         return true;
     }
 
+    void AbstractWindowContext::setHasChildCb(std::function<bool (const QObject *, const QPoint &)> cb)
+    {
+        m_delegate->setHasChildCb(cb);
+    }
+
 #ifdef Q_OS_MAC
     void AbstractWindowContext::setSystemButtonAreaCallback(const ScreenRectCallback &callback) {
         m_systemButtonAreaCallback = callback;
@@ -125,6 +130,11 @@ namespace QWK {
             qDebug()<<Q_FUNC_INFO<<__LINE__;
             return false;
         }
+        if(m_delegate->hasChild(m_titleBar,pos))
+        {
+            qDebug()<<Q_FUNC_INFO<<__LINE__;
+            return false;
+        }
 //        if (m_delegate->hasChild(m_titleBar,pos) ) {
 //            // There's no title bar at all, the mouse will always be in the client area.
 ////            qDebug()<<Q_FUNC_INFO<<__LINE__;
@@ -146,7 +156,7 @@ namespace QWK {
         }
 
         if (!titleBarRect.contains(pos)) {
-            qDebug()<<Q_FUNC_INFO<<__LINE__;
+            //qDebug()<<Q_FUNC_INFO<<__LINE__;
             return false;
         }
 

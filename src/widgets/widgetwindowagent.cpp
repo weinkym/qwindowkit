@@ -90,6 +90,12 @@ namespace QWK {
         Q_EMIT titleBarChanged(w);
     }
 
+    void WidgetWindowAgent::setHasChildCb(std::function<bool (const QObject *, const QPoint &)> cb)
+    {
+        Q_D(WidgetWindowAgent);
+        d->context->setHasChildCb(cb);
+    }
+
     /*!
         Returns the system button of the given type.
     */

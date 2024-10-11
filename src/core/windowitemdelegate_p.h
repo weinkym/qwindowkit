@@ -20,6 +20,7 @@
 
 #include <QWKCore/private/winidchangeeventfilter_p.h>
 #include <QWKCore/qwkglobal.h>
+#include <QDebug>
 
 namespace QWK {
 
@@ -34,7 +35,16 @@ namespace QWK {
         virtual bool isEnabled(const QObject *obj) const = 0;
         virtual bool isVisible(const QObject *obj) const = 0;
         virtual QRect mapGeometryToScene(const QObject *obj) const = 0;
-        virtual bool hasChild(const QObject *obj,const QPoint &pos) const = 0;
+        void setHasChildCb(std::function<bool(const QObject *obj,const QPoint &pos)> cb){hasChildCb = cb;};
+        bool hasChild(const QObject *obj,const QPoint &pos) const{
+            if(hasChildCb)
+            {
+                qDebug()<<Q_FUNC_INFO<<__LINE__;
+                return hasChildCb(obj,pos);
+            }
+            qDebug()<<Q_FUNC_INFO<<__LINE__;
+            return false;
+        };
 
         // Host property query
         virtual QWindow *hostWindow(const QObject *host) const = 0;
@@ -59,6 +69,8 @@ namespace QWK {
 
     private:
         Q_DISABLE_COPY(WindowItemDelegate)
+        std::function<bool(const QObject *obj,const QPoint &pos)> hasChildCb;
+
     };
 
 }

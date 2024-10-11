@@ -54,6 +54,7 @@ namespace QWK {
 
         inline QObject *titleBar() const;
         bool setTitleBar(QObject *obj);
+        void setHasChildCb(std::function<bool(const QObject *obj,const QPoint &pos)> cb);
 
 #ifdef Q_OS_MAC
         inline ScreenRectCallback systemButtonAreaCallback() const;

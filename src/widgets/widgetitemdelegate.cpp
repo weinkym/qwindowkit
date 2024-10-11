@@ -61,13 +61,6 @@ namespace QWK {
         return {originPoint, size};
     }
 
-    bool WidgetItemDelegate::hasChild(const QObject *obj, const QPoint &pos) const
-    {
-        qDebug()<<static_cast<const QWidget *>(obj)->childAt(pos);
-
-        return static_cast<const QWidget *>(obj)->childAt(pos) != nullptr;
-    }
-
     QWindow *WidgetItemDelegate::hostWindow(const QObject *host) const {
         return static_cast<const QWidget *>(host)->windowHandle();
     }
